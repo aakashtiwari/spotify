@@ -1,16 +1,25 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
+import { HomeComponent } from './home/home.component';
+import { MusicModule } from './music/music.module';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HomeComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    RouterModule.forRoot([
+        { path: 'home', component: HomeComponent },
+        { path: '', redirectTo: 'home', pathMatch: 'full'},
+        { path: '**', redirectTo: 'home', pathMatch: 'full'}
+    ]),
+    MusicModule
   ],
   providers: [],
   bootstrap: [AppComponent]
