@@ -1,5 +1,6 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
@@ -14,6 +15,7 @@ import { MusicModule } from './music/music.module';
   ],
   imports: [
     BrowserModule,
+    HttpModule,
     RouterModule.forRoot([
         { path: 'home', component: HomeComponent },
         { path: '', redirectTo: 'home', pathMatch: 'full'},

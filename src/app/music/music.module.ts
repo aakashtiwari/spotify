@@ -1,18 +1,31 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
-import { MusicComponent } from './music.component'
+import { MusicComponent } from './music.component';
+import { MusicDetailComponent } from './music-detail/music-detail.component';
+import { MusicEditComponent } from './music-edit/music-edit.component'
+
+import { MusicService } from './music.service';
+
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   imports: [
-    CommonModule,
+    SharedModule,
+    ReactiveFormsModule,
     RouterModule.forChild([
         { path: 'music', component: MusicComponent }
     ])
   ],
   declarations: [
-  	MusicComponent
+  	MusicComponent,
+  	MusicDetailComponent,
+  	MusicEditComponent
+  ],
+  providers: [
+    MusicService
   ]
 })
 export class MusicModule { }
