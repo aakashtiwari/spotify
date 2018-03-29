@@ -90,13 +90,13 @@ export class MusicService {
         // Return an initialized music object
         return {
             id: 0,
-            songName: null,
+            name: null,
             album: null,
             tags: [''],
-            releaseDate: null,
+            release_date: null,
             artist: null,
             description: null,
-            starRating: null,
+            star_rating: null,
             imageUrl: null
         };
     }

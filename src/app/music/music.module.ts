@@ -7,6 +7,7 @@ import { MusicComponent } from './music.component';
 import { MusicDetailComponent } from './music-detail/music-detail.component';
 import { MusicEditComponent } from './music-edit/music-edit.component'
 
+import { MusicFilterPipe } from './music-filter.pipe';
 import { MusicService } from './music.service';
 
 import { SharedModule } from '../shared/shared.module';
@@ -17,12 +18,21 @@ import { SharedModule } from '../shared/shared.module';
     ReactiveFormsModule,
     RouterModule.forChild([
         { path: 'music', component: MusicComponent }
+        { path: 'music/:id',
+	        canActivate: [ MusicDetailGuard],
+	        component: MusicDetailComponent
+	      },
+	      { path: 'musicEdit/:id',
+	        canDeactivate: [ MusicEditGuard ],
+	        component: MusicEditComponent 
+	      },
     ])
   ],
   declarations: [
   	MusicComponent,
   	MusicDetailComponent,
-  	MusicEditComponent
+  	MusicEditComponent,
+  	MusicFilterPipe
   ],
   providers: [
     MusicService

@@ -1,12 +1,12 @@
 /* Defines the product entity */
 export interface IMusic {
     id: number;
-    songName: string;
+    name: string;
     album: string;
     tags?: string[];
-    releaseDate: string;
+    release_date: string;
     artist: number;
     description: string;
-    starRating: number;
+    star_rating: number;
     imageUrl: string;
 }
