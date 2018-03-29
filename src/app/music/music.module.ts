@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 
 import { MusicComponent } from './music.component';
 import { MusicDetailComponent } from './music-detail/music-detail.component';
+import { MusicDetailGuard, MusicEditGuard } from './music-guard.service';
 import { MusicEditComponent } from './music-edit/music-edit.component'
 
 import { MusicFilterPipe } from './music-filter.pipe';
@@ -17,7 +18,7 @@ import { SharedModule } from '../shared/shared.module';
     SharedModule,
     ReactiveFormsModule,
     RouterModule.forChild([
-        { path: 'music', component: MusicComponent }
+        { path: 'music', component: MusicComponent },
         { path: 'music/:id',
 	        canActivate: [ MusicDetailGuard],
 	        component: MusicDetailComponent

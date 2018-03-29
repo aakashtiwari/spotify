@@ -67,7 +67,7 @@ export class MusicEditComponent implements OnInit, AfterViewInit, OnDestroy {
     }
 
     ngOnInit(): void {
-        this.MusicForm = this.fb.group({
+        this.musicForm = this.fb.group({
             name: ['', [Validators.required,
                         Validators.minLength(3),
                         Validators.maxLength(50)]],
@@ -108,7 +108,7 @@ export class MusicEditComponent implements OnInit, AfterViewInit, OnDestroy {
     deleteTag(index: number): void {
         this.tags.removeAt(index);
         // The line below is required in Angular 4 to fix a bug with `removeAt` that was fixed in Angular 5.
-        this.productForm.setControl('tags', this.fb.array(this.tags.value || []));
+        this.musicForm.setControl('tags', this.fb.array(this.tags.value || []));
     }
 
     getSong(id: number): void {
@@ -133,12 +133,12 @@ export class MusicEditComponent implements OnInit, AfterViewInit, OnDestroy {
 
         // Update the data on the form
         this.musicForm.patchValue({
-            name: this.product.name,
-            album: this.product.album,
-            star_rating: this.product.star_rating,
-            description: this.product.description
+            name: this.song.name,
+            album: this.song.album,
+            star_rating: this.song.star_rating,
+            description: this.song.description
         });
-        this.productForm.setControl('tags', this.fb.array(this.song.tags || []));
+        this.musicForm.setControl('tags', this.fb.array(this.song.tags || []));
     }
 
     deleteSong(): void {
