@@ -76,6 +76,7 @@ export class MusicService {
 
     private extractData(response: Response) {
         let body = response.json();
+        
         return body.data || {};
     }
 

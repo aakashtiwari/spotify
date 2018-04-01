@@ -1,3 +1,63 @@
-<p>
-  music-detail works!
-</p>
+<div class="panel panel-primary" *ngIf="song">
+    <div class="panel-heading" style="font-size:large">
+        {{pageTitle + ": " + song.name}}
+    </div>
+
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-3">Name:</div>
+                    <div class="col-md-6">{{song.name}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">Album:</div>
+                    <div class="col-md-6">{{song.album}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">Description:</div>
+                    <div class="col-md-6">{{song.description}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">Release Date:</div>
+                    <div class="col-md-6">{{song.release_date}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">Artist</div>
+                    <div class="col-md-6">{{song.artist}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">5 Star Rating:</div>
+                    <div class="col-md-6">
+                        <ai-star [rating]="song.star_rating"
+                                (ratingClicked)="onRatingClicked($event)">
+                        </ai-star>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">Tags:</div>
+                    <div class="col-md-6">{{song.tags}}</div>
+                </div>
+            </div>
+
+            <div class="col-md-6" *ngIf="song.image_url">
+                <img class="center-block img-responsive" 
+                     [style.width.px]="200" 
+                     [style.margin.px]="2" 
+                     [src]="song.image_url"
+                     [title]="song.name">
+            </div>
+        </div>
+        <div class='has-error' *ngIf='errorMessage'>{{errorMessage}}</div>
+    </div>
+
+    <div class="panel-footer">
+        <a class="btn btn-default" (click)="onBack()" style="width:80px">
+            <i class="glyphicon glyphicon-chevron-left"></i> Back
+        </a>
+        <a class="btn btn-primary" style="width:80px;margin-left:10px" 
+           [routerLink]="['/musicEdit', song.id]">
+            Edit
+        </a>
+    </div>
+</div>

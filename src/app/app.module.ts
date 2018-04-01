@@ -23,7 +23,6 @@ import { MusicModule } from './music/music.module';
     ]),
     MusicModule
   ],
-  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

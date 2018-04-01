@@ -19,8 +19,8 @@ import { SharedModule } from '../shared/shared.module';
     ReactiveFormsModule,
     RouterModule.forChild([
         { path: 'music', component: MusicComponent },
-        { path: 'music/:id',
-	        canActivate: [ MusicDetailGuard],
+        { path: 'song/:id',
+	        canActivate: [ MusicDetailGuard ],
 	        component: MusicDetailComponent
 	      },
 	      { path: 'musicEdit/:id',
@@ -36,7 +36,9 @@ import { SharedModule } from '../shared/shared.module';
   	MusicFilterPipe
   ],
   providers: [
-    MusicService
+    MusicService,
+    MusicDetailGuard,
+    MusicEditGuard
   ]
 })
 export class MusicModule { }
