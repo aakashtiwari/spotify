@@ -96,6 +96,37 @@
           </div>
         </div>
 
+				<div class="form-group" [ngClass]="{'has-error': displayMessage.artist}">
+          <label class="col-md-2 control-label" for="artistId">Artist</label>
+
+          <div class="col-md-8">
+            <input class="form-control" 
+                    id="artistId" 
+                    placeholder="Aritst"
+                    rows=3
+                    formControlName="artist" />
+            <span class="help-block" *ngIf="displayMessage.artist">
+                    {{ displayMessage.artist }}
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group" [ngClass]="{'has-error': displayMessage.release_date}">
+          <label class="col-md-2 control-label" for="artistId">Release Date</label>
+
+          <div class="col-md-8">
+            <input class="form-control" 
+                    id="releaseDateId" 
+                    placeholder="Release Date"
+                    rows=3
+                    type="number" 
+                    formControlName="release_date" />
+            <span class="help-block" *ngIf="displayMessage.release_date">
+                    {{ displayMessage.release_date 		 }}
+            </span>
+          </div>
+        </div>
+
         <div class="form-group">
           <div class="col-md-4 col-md-offset-2">
             <span>

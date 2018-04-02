@@ -58,6 +58,9 @@ export class MusicEditComponent implements OnInit, AfterViewInit, OnDestroy {
             },
             star_rating: {
                 range: 'Rate the product between 1 (lowest) and 5 (highest).'
+            },
+            artist: {
+            	required: 'Artist name is required.'
             }
         };
 
@@ -74,7 +77,9 @@ export class MusicEditComponent implements OnInit, AfterViewInit, OnDestroy {
             album: ['', Validators.required],
             star_rating: ['', NumberValidators.range(1, 5)],
             tags: this.fb.array([]),
-            description: ''
+            description: '',
+            artist: ['', Validators.required],
+            release_date: ''
         });
 
         // Read the song Id from the route parameter
