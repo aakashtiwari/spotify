@@ -17,6 +17,7 @@ import { AlertComponent } from './directives/index';
 
 // used to create fake backend
 import { fakeBackendProvider } from './helpers/index';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { fakeBackendProvider } from './helpers/index';
     HomeComponent,
     LoginComponent,
     RegisterComponent,
+    HeaderComponent,
   ],
   providers: [
     AuthGuard,
@@ -40,12 +42,13 @@ import { fakeBackendProvider } from './helpers/index';
   imports: [
     BrowserModule,
     HttpModule,
+    HttpClientModule,
     FormsModule,
     RouterModule.forRoot([
         { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
         { path: 'login', component: LoginComponent },
         { path: 'register', component: RegisterComponent },
-        { path: '**', redirectTo: ''}
+        { path: '**', redirectTo: 'home'}
     ]),
     MusicModule
   ],

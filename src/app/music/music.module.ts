@@ -11,6 +11,7 @@ import { MusicEditComponent } from './music-edit/music-edit.component'
 import { MusicFilterPipe } from './music-filter.pipe';
 import { MusicService } from './music.service';
 
+import { AuthGuard } from '../auth.guard';
 import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
@@ -18,12 +19,13 @@ import { SharedModule } from '../shared/shared.module';
     SharedModule,
     ReactiveFormsModule,
     RouterModule.forChild([
-        { path: 'music', component: MusicComponent },
+        { path: 'music', component: MusicComponent, canActivate: [AuthGuard] },
         { path: 'song/:id',
-	        canActivate: [ MusicDetailGuard ],
+	        canActivate: [ AuthGuard, MusicDetailGuard ],
 	        component: MusicDetailComponent
 	      },
 	      { path: 'musicEdit/:id',
+	      	canActivate: [AuthGuard],
 	        canDeactivate: [ MusicEditGuard ],
 	        component: MusicEditComponent 
 	      },
