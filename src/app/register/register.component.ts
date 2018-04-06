@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 
 import { AlertService, UserService } from '../services/index';
 
+import { IUser } from '../models/IUser';
+
 @Component({
   selector: 'app-register',
   moduleId: module.id.toString(),
@@ -11,7 +13,7 @@ import { AlertService, UserService } from '../services/index';
 })
 export class RegisterComponent {
 
-  model: any = {};
+  model: IUser = {};
   loading = false;
 
   constructor(
@@ -21,7 +23,7 @@ export class RegisterComponent {
 
   register() {
     this.loading = true;
-    this.userService.create(this.model)
+    this.userService.createUser(this.model)
         .subscribe(
             data => {
                 this.alertService.success('Registration successful', true);
