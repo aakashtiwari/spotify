@@ -8,6 +8,7 @@ import 'rxjs/add/operator/map'
 export class AuthenticationService {
   
   private loggedIn = new BehaviorSubject<boolean>(true);
+  private baseUrl = 'http://akashtiwari.com:3002/';
 
   constructor(private http: HttpClient) { }
 
@@ -16,15 +17,16 @@ export class AuthenticationService {
   }
 
   login(username: string, password: string) {
-    return this.http.post<any>('/api/authenticate', { username: username, password: password })
+    let url = `${this.baseUrl}authenticate`;
+    return this.http.post<any>(url, { username: username, password: password })
       .map(user => {
         // login successful if there's a jwt token in the response
         this.loggedIn.next(true);
-        if (user && user.token) {
+        if (user && user.user_data) {
           // store user details and jwt token in local storage to keep user logged in between page refreshes
-          localStorage.setItem('currentUser', JSON.stringify(user));
+          let token =  user.user_data.token
+          localStorage.setItem('auth_token',token);
         }
-
         return user;
       });
   }
@@ -32,6 +34,6 @@ export class AuthenticationService {
   logout() {
     this.loggedIn.next(false);
     // remove user from local storage to log user out
-    localStorage.removeItem('currentUser');
+    localStorage.removeItem('auth_token');
   }
 }

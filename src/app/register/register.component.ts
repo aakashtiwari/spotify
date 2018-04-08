@@ -13,7 +13,7 @@ import { IUser } from '../models/IUser';
 })
 export class RegisterComponent {
 
-  model: IUser = {};
+  model: IUser;
   loading = false;
 
   constructor(
@@ -26,6 +26,7 @@ export class RegisterComponent {
     this.userService.createUser(this.model)
         .subscribe(
             data => {
+                this.setToken(data);
                 this.alertService.success('Registration successful', true);
                 this.router.navigate(['/login']);
             },
@@ -33,5 +34,10 @@ export class RegisterComponent {
                 this.alertService.error(error);
                 this.loading = false;
             });
+  }
+
+  private setToken(data) {
+    let token = JSON.parse(data._body).auth_token;
+    localStorage.setItem('auth_token',token);
   }
 }

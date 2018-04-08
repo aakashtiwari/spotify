@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Http, Response, Headers, RequestOptions } from '@angular/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Response, RequestOptions } from '@angular/http';
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/do';
@@ -14,7 +15,7 @@ import { IMusic } from './music';
 export class MusicService {
     private baseUrl = 'http://akashtiwari.com:3002/songs';
 
-    constructor(private http: Http) { }
+    constructor(private http: HttpClient) { }
 
     getSongs(): Observable<IMusic[]> {
         return this.http.get(this.baseUrl)
@@ -74,10 +75,8 @@ export class MusicService {
             .catch(this.handleError);
     }
 
-    private extractData(response: Response) {
-        let body = response.json();
-        
-        return body.data || {};
+    private extractData(response: Response) {        
+        return response.data || {};
     }
 
     private handleError(error: Response): Observable<any> {

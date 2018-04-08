@@ -16,7 +16,6 @@ import { JwtInterceptor } from './helpers/index';
 import { AlertComponent } from './directives/index';
 
 // used to create fake backend
-import { fakeBackendProvider } from './helpers/index';
 import { HeaderComponent } from './header/header.component';
 
 @NgModule({
@@ -36,8 +35,7 @@ import { HeaderComponent } from './header/header.component';
       provide: HTTP_INTERCEPTORS,
       useClass: JwtInterceptor,
       multi: true
-    },
-    fakeBackendProvider
+    }
   ],
   imports: [
     BrowserModule,
